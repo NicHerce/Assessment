@@ -1,0 +1,13 @@
+Product Owner: Dominic Herce
+
+User Story: LinkedMe Project
+
+Number of Sprints: 2
+Duration per Sprint: 10
+Total Duration of Sprints: 20
+
+Tasks:                         Duration (Hours):   
+Create Backend                 48                  
+Create Frontend                24                  
+
+Definition of Done: Release the application
