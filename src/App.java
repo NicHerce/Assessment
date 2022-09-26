@@ -1,27 +1,72 @@
-import java.util.Scanner;
+import java.util.*;
 
-public class App {
+public class App extends FileManager{
+
+    public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         System.out.println("Welcome to LockedMe");
-        System.out.println("Created by Herce, D.");
+        System.out.println("Created by Herce, D.\n");
 
-        System.out.println();
-        mainMenu();
+        // main menu:
+        menu();
     }
 
-    private static void mainMenu() {
-        Scanner scanner = new Scanner(System.in);
+    // main menu where user can sort, add, search, and delete files
+    private static void menu() {
+        int input;
 
-        System.out.println("Main Menu");
-        System.out.println("Select Transaction: ");
-        String input = scanner.nextLine();
+        do {
+            System.out.println("Main Menu");
+            System.out.println("""
+                    [1] Retrieve file names
+                    [2] Add, Search, Delete file
+                    [3] Close the application"""
+            );
 
-        switch (input) {
-            case "1" -> System.out.println("case 1: return file names in ascending order");
-            case "2" -> System.out.println("case 2: return ");
-            case "3" -> System.out.println("case 3: close the application");
-        }
+            // asks user for input and checks if it is valid
+            input = checkInput( 3);
+
+            switch (input) {
+                // case 1: sorts files in ascending order:
+                case 1 -> sortFile();
+                // case 3: close the application
+                case 3 -> System.exit(0);
+            }
+
+            if(input == 2) {
+                // case 2: add, search, and delete files:
+                System.out.println("business level operation");
+                System.out.println("""
+                    [1] Add file
+                    [2] Search file
+                    [3] Delete file
+                    [4] Return to main menu"""
+                );
+
+                // asks user for input and checks if it is valid
+                input = checkInput(4);
+
+                switch (input) {
+                    case 1 -> createFile();
+                    case 2 -> searchFile(1);
+                    case 3 -> deleteFile();
+                }
+            }
+
+        } while(input == 4);
+
     }
 
+    // asks user for input and checks if it is valid
+    private static int checkInput(int end) {
+        int input;
+
+        do{
+            System.out.print("Select transaction: ");
+            input = scanner.nextInt();
+        }while (input < 1 || input > end);
+
+        return input;
+    }
 }
